@@ -1,12 +1,13 @@
 var socket = new WebSocket(`ws://${window.location.hostname}:8080/ws`);
 
-let connect = () => {
+let connect = (cb) => {
 	socket.onopen = () => {
 		console.log('connected');
 	};
 
 	socket.onmessage = (msg) => {
 		console.log(msg);
+		cb(msg);
 	};
 
 	socket.onclose = (event) => {
